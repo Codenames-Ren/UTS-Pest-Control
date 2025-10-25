@@ -26,4 +26,10 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Forms\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
