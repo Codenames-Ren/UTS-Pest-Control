@@ -139,13 +139,13 @@ namespace UTS_Pest_Control.Forms
 
         private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex == 0)
+            if(e.RowIndex >= 0)
             {
                 var row = dgvClients.Rows[e.RowIndex];
                 txtClientName.Text = row.Cells["Name"].Value?.ToString();
                 txtClientAddress.Text = row.Cells["Address"].Value?.ToString();
                 txtClientPhone.Text = row.Cells["Phone"].Value?.ToString();
-                txtClientEmail.Text = row.Cells["email"].Value?.ToString();
+                txtClientEmail.Text = row.Cells["Email"].Value?.ToString();
             }
         }
     }
