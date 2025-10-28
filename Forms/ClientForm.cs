@@ -32,7 +32,7 @@ namespace UTS_Pest_Control.Forms
         {
             dgvClients.DataSource = _clientService.GetAllClients().Select(c => new
             {
-                c.ClientId,
+                c.ClientID,
                 c.Name,
                 c.Address,
                 c.Phone,
@@ -88,7 +88,7 @@ namespace UTS_Pest_Control.Forms
 
             var client = new Client
             {
-                ClientId = (int)selectedId,
+                ClientID = (int)selectedId,
                 Name = txtClientName.Text.Trim(),
                 Address = txtClientAddress.Text.Trim(),
                 Phone = txtClientPhone.Text.Trim(),

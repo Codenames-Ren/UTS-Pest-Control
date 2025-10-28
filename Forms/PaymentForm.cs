@@ -23,6 +23,10 @@ namespace UTS_Pest_Control.Forms
             _paymentService = paymentService;
             _clientService = clientService;
             _packageService = packageService;
+
+            LoadClients();
+            LoadPayments();
+            LoadPackages();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -41,10 +45,13 @@ namespace UTS_Pest_Control.Forms
 
             var payment = new Payment
             {
-                ClientId = (int)cmbClient.SelectedValue,
+                ClientID = (int)cmbClient.SelectedValue,
+                PackageID = (int)cmbPackage.SelectedValue,
                 PaymentMethod = cmbMethod.SelectedItem.ToString(),
                 TotalAmount = total,
-                PaymentDate = DateTime.Now
+                PaymentDate = DateTime.UtcNow,
+                ServiceDate = DateTime.SpecifyKind(dtpServiceDate.Value, DateTimeKind.Utc),
+                PaymentStatus = "Paid"
             };
 
             _paymentService.AddPayment(payment);
@@ -76,7 +83,9 @@ namespace UTS_Pest_Control.Forms
                 PackageID = (int)cmbPackage.SelectedValue,
                 PaymentMethod = cmbMethod.SelectedItem.ToString(),
                 TotalAmount = total,
-                PaymentDate = DateTime.Now
+                PaymentDate = DateTime.Now.ToUniversalTime(),
+                ServiceDate = DateTime.SpecifyKind(dtpServiceDate.Value, DateTimeKind.Utc),
+                PaymentStatus = "Paid"
             };
 
             _paymentService.UpdatePayment(payment);
@@ -119,6 +128,20 @@ namespace UTS_Pest_Control.Forms
                 cmbPackage.Text = row.Cells["PackageName"].Value?.ToString();
                 cmbMethod.Text = row.Cells["PaymentMethod"].Value?.ToString();
                 txtTotal.Text = row.Cells["TotalAmount"].Value?.ToString();
+            }
+        }
+
+        private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbPackage.SelectedValue == null || cmbPackage.SelectedValue is not int)
+                return;
+
+            int selectedPackageId = (int)cmbPackage.SelectedValue;
+            var package = _packageService.GetPackageById(selectedPackageId);
+
+            if (package != null)
+            {
+                txtTotal.Text = package.Price.ToString("N0"); // otomatis isi harga paket
             }
         }
     }

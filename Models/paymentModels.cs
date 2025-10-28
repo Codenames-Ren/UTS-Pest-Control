@@ -17,5 +17,7 @@ namespace UTS_Pest_Control.Models
         public string PaymentMethod { get; set; }
         public decimal TotalAmount { get; set; }
         public string PaymentStatus { get; set; }
+        public DateTime ServiceDate { get; set; }
+
     }
 }

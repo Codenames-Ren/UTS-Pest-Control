@@ -1,6 +1,4 @@
-﻿
-using System.IO.Packaging;
-using UTS_Pest_Control.Models;
+﻿using UTS_Pest_Control.Models;
 
 namespace UTS_Pest_Control.Forms
 {
@@ -45,87 +43,86 @@ namespace UTS_Pest_Control.Forms
             btnUpdate = new Button();
             btnAdd = new Button();
             dgvPayments = new DataGridView();
+            dtpServiceDate = new DateTimePicker();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvPayments).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(34, 17);
+            label1.Location = new Point(39, 23);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(47, 20);
             label1.TabIndex = 0;
             label1.Text = "Client";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(34, 66);
+            label2.Location = new Point(39, 65);
             label2.Name = "label2";
-            label2.Size = new Size(51, 15);
+            label2.Size = new Size(63, 20);
             label2.TabIndex = 1;
             label2.Text = "Package";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(424, 15);
+            label3.Location = new Point(485, 20);
             label3.Name = "label3";
-            label3.Size = new Size(99, 15);
+            label3.Size = new Size(121, 20);
             label3.TabIndex = 2;
             label3.Text = "Payment Method";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(494, 68);
+            label4.Location = new Point(565, 68);
             label4.Name = "label4";
-            label4.Size = new Size(33, 15);
+            label4.Size = new Size(42, 20);
             label4.TabIndex = 3;
             label4.Text = "Total";
             // 
             // cmbClient
             // 
             cmbClient.FormattingEnabled = true;
-            cmbClient.Location = new Point(108, 15);
-            cmbClient.Margin = new Padding(3, 2, 3, 2);
+            cmbClient.Location = new Point(123, 20);
             cmbClient.Name = "cmbClient";
-            cmbClient.Size = new Size(232, 23);
+            cmbClient.Size = new Size(265, 28);
             cmbClient.TabIndex = 4;
             // 
             // cmbPackage
             // 
             cmbPackage.FormattingEnabled = true;
-            cmbPackage.Location = new Point(108, 62);
-            cmbPackage.Margin = new Padding(3, 2, 3, 2);
+            cmbPackage.Location = new Point(123, 60);
             cmbPackage.Name = "cmbPackage";
-            cmbPackage.Size = new Size(232, 23);
+            cmbPackage.Size = new Size(265, 28);
             cmbPackage.TabIndex = 5;
+            cmbPackage.SelectedIndexChanged += cmbPackage_SelectedIndexChanged;
             // 
             // cmbMethod
             // 
             cmbMethod.FormattingEnabled = true;
             cmbMethod.Items.AddRange(new object[] { "Cash", "Transfer Bank", "E-Wallet" });
-            cmbMethod.Location = new Point(561, 15);
-            cmbMethod.Margin = new Padding(3, 2, 3, 2);
+            cmbMethod.Location = new Point(641, 20);
             cmbMethod.Name = "cmbMethod";
-            cmbMethod.Size = new Size(232, 23);
+            cmbMethod.Size = new Size(265, 28);
             cmbMethod.TabIndex = 6;
             // 
             // txtTotal
             // 
-            txtTotal.Location = new Point(561, 65);
-            txtTotal.Margin = new Padding(3, 2, 3, 2);
+            txtTotal.Location = new Point(641, 64);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new Size(232, 23);
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(265, 27);
             txtTotal.TabIndex = 7;
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(511, 118);
-            btnClear.Margin = new Padding(3, 2, 3, 2);
+            btnClear.Location = new Point(860, 175);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(82, 29);
+            btnClear.Size = new Size(94, 39);
             btnClear.TabIndex = 47;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -133,10 +130,9 @@ namespace UTS_Pest_Control.Forms
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(397, 118);
-            btnDelete.Margin = new Padding(3, 2, 3, 2);
+            btnDelete.Location = new Point(730, 175);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(82, 29);
+            btnDelete.Size = new Size(94, 39);
             btnDelete.TabIndex = 46;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -144,10 +140,9 @@ namespace UTS_Pest_Control.Forms
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(267, 118);
-            btnUpdate.Margin = new Padding(3, 2, 3, 2);
+            btnUpdate.Location = new Point(581, 175);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(82, 29);
+            btnUpdate.Size = new Size(94, 39);
             btnUpdate.TabIndex = 45;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -155,10 +150,9 @@ namespace UTS_Pest_Control.Forms
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(139, 118);
-            btnAdd.Margin = new Padding(3, 2, 3, 2);
+            btnAdd.Location = new Point(435, 175);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(82, 29);
+            btnAdd.Size = new Size(94, 39);
             btnAdd.TabIndex = 44;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -167,19 +161,39 @@ namespace UTS_Pest_Control.Forms
             // dgvPayments
             // 
             dgvPayments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPayments.Location = new Point(31, 165);
-            dgvPayments.Margin = new Padding(3, 2, 3, 2);
+            dgvPayments.Location = new Point(35, 220);
             dgvPayments.Name = "dgvPayments";
             dgvPayments.RowHeadersWidth = 51;
-            dgvPayments.Size = new Size(807, 285);
+            dgvPayments.Size = new Size(922, 380);
             dgvPayments.TabIndex = 48;
             dgvPayments.CellContentClick += dgvPayments_CellContentClick;
             // 
+            // dtpServiceDate
+            // 
+            dtpServiceDate.CustomFormat = "\"dd/MM/yyyy HH:mm\"";
+            dtpServiceDate.Format = DateTimePickerFormat.Custom;
+            dtpServiceDate.Location = new Point(123, 103);
+            dtpServiceDate.Name = "dtpServiceDate";
+            dtpServiceDate.ShowUpDown = true;
+            dtpServiceDate.Size = new Size(265, 27);
+            dtpServiceDate.TabIndex = 49;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(44, 103);
+            label5.Name = "label5";
+            label5.Size = new Size(42, 20);
+            label5.TabIndex = 50;
+            label5.Text = "Time";
+            // 
             // PaymentForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(866, 463);
+            ClientSize = new Size(990, 617);
+            Controls.Add(label5);
+            Controls.Add(dtpServiceDate);
             Controls.Add(dgvPayments);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
@@ -193,7 +207,6 @@ namespace UTS_Pest_Control.Forms
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "PaymentForm";
             Text = "PaymentForm";
             Load += PaymentForm_Load;
@@ -205,7 +218,7 @@ namespace UTS_Pest_Control.Forms
         private void PaymentForm_Load(object sender, EventArgs e)
         {
             LoadClients();
-            LoadPackagdes();
+            LoadPackages();
             LoadPayments();
 
             dgvPayments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;dgvPayments.MultiSelect = false;
@@ -213,25 +226,35 @@ namespace UTS_Pest_Control.Forms
 
         private void LoadClients()
         {
-            var clients = _packageService.GetAllPackages().ToList();
-            cmbPackage.DataSource = Package;
-            cmbPackage.DisplayMember = "Package Name";
-            cmbPackage.ValueMember = "Package ID";
+            var clients = _clientService.GetAllClients();
+            cmbClient.DataSource = clients;
+            cmbClient.DisplayMember = "Name";
+            cmbClient.ValueMember = "ClientID"; 
+            cmbClient.SelectedIndex = -1;
+        }
+
+        private void LoadPackages()
+        {
+            var packages = _packageService.GetAllPackages();
+            cmbPackage.DataSource = packages;
+            cmbPackage.DisplayMember = "Name";       
+            cmbPackage.ValueMember = "PackageID";    
+            cmbPackage.SelectedIndex = -1;
         }
 
         private void LoadPayments()
         {
-            dgvPayments.DataSource = _packageService.GetAllPayments()
-                .Select(p => new
-                {
-                    p.PaymentID,
-                    ClientName = p.Client?.Name,
-                    PackageName = p.Package?.PackageName,
-                    p.PaymentMethod,
-                    p.TotalAmaount,
-                    p,
-                    PaymentDate
-                }).ToList();
+            var payments = _paymentService.GetAllPayments();
+            dgvPayments.DataSource = payments.Select(p => new
+            {
+                p.PaymentID,
+                ClientName = p.Client?.Name,
+                PackageName = p.Package?.Name,
+                p.PaymentMethod,
+                p.TotalAmount,
+                p.PaymentDate,
+                p.ServiceDate
+            }).ToList();
         }
 
         private void ClearInputs()
@@ -257,5 +280,7 @@ namespace UTS_Pest_Control.Forms
         private Button btnUpdate;
         private Button btnAdd;
         private DataGridView dgvPayments;
+        private DateTimePicker dtpServiceDate;
+        private Label label5;
     }
 }

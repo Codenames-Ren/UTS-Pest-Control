@@ -16,7 +16,7 @@ namespace UTS_Pest_Control.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(type: "integer", nullable: false)
+                    ClientID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
@@ -25,7 +25,7 @@ namespace UTS_Pest_Control.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.ClientId);
+                    table.PrimaryKey("PK_Clients", x => x.ClientID);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,7 +63,7 @@ namespace UTS_Pest_Control.Migrations
                         name: "FK_Payments_Clients_ClientID",
                         column: x => x.ClientID,
                         principalTable: "Clients",
-                        principalColumn: "ClientId",
+                        principalColumn: "ClientID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Payments_Packages_PackageID",

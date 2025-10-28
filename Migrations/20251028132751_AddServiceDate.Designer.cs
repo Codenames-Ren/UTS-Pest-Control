@@ -12,8 +12,8 @@ using UTS_Pest_Control.Data;
 namespace UTS_Pest_Control.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251028051741_InitialCore")]
-    partial class InitialCore
+    [Migration("20251028132751_AddServiceDate")]
+    partial class AddServiceDate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace UTS_Pest_Control.Migrations
 
             modelBuilder.Entity("UTS_Pest_Control.Models.Client", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ClientID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ClientId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ClientID"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -49,7 +49,7 @@ namespace UTS_Pest_Control.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("ClientID");
 
                     b.ToTable("Clients");
                 });
@@ -102,6 +102,9 @@ namespace UTS_Pest_Control.Migrations
                     b.Property<string>("PaymentStatus")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("ServiceDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("numeric");

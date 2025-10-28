@@ -12,7 +12,7 @@ using UTS_Pest_Control.Data;
 namespace UTS_Pest_Control.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251026134500_InitialCreate")]
+    [Migration("20251028125329_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace UTS_Pest_Control.Migrations
 
             modelBuilder.Entity("UTS_Pest_Control.Models.Client", b =>
                 {
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ClientID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ClientId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ClientID"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -49,7 +49,7 @@ namespace UTS_Pest_Control.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("ClientId");
+                    b.HasKey("ClientID");
 
                     b.ToTable("Clients");
                 });

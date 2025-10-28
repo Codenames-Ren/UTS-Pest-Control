@@ -23,7 +23,7 @@ namespace UTS_Pest_Control.Repositories
         }
         public Client GetById(int id)
         {
-            return _context.Clients.FirstOrDefault(c => c.ClientId == id);
+            return _context.Clients.FirstOrDefault(c => c.ClientID == id);
         }
 
         public void Add(Client client) 
