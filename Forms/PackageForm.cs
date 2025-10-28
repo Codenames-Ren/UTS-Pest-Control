@@ -14,7 +14,7 @@ namespace UTS_Pest_Control.Forms
 {
     public partial class PackageForm : Form
     {
-        private readonly PackageService packageService;
+        private readonly PackageService _packageService;
         public PackageForm(PackageService packageService)
         {
             InitializeComponent();
@@ -51,9 +51,9 @@ namespace UTS_Pest_Control.Forms
         {
             string name = txtName.Text.Trim();
             string desc = txtDescription.Text.Trim();
-            string price = txtPrice.Text.Trim();
+            string priceText = txtPrice.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(price))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(priceText))
             {
                 MessageBox.Show("Semua field harus diisi!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -67,7 +67,7 @@ namespace UTS_Pest_Control.Forms
 
             var package = new Package
             {
-                PackageName = name,
+                Name = name,
                 Description = desc,
                 Price = price
             };
@@ -90,7 +90,7 @@ namespace UTS_Pest_Control.Forms
 
             string name = txtName.Text.Trim();
             string desc = txtDescription.Text.Trim();
-            string price = txtPrice.Text.Trim();
+            string priceText = txtPrice.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(priceText))
             {
@@ -98,7 +98,7 @@ namespace UTS_Pest_Control.Forms
                 return;
             }
 
-            if (!decimal.TryParse(price, out decimal price))
+            if (!decimal.TryParse(priceText, out decimal price))
             {
                 MessageBox.Show("Harga harus berupa angka!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -107,7 +107,7 @@ namespace UTS_Pest_Control.Forms
             var package = new Package
             {
                 PackageID = selectedld,
-                PackageName = name,
+                Name = name,
                 Description = desc,
                 Price = price
             };
