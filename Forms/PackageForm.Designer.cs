@@ -102,7 +102,7 @@
             txtDescription.Location = new Point(648, 16);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(260, 110);
+            txtDescription.Size = new Size(294, 137);
             txtDescription.TabIndex = 37;
             // 
             // txtName
@@ -132,7 +132,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(40, 69);
+            label4.Location = new Point(64, 69);
             label4.Name = "label4";
             label4.Size = new Size(41, 20);
             label4.TabIndex = 33;
@@ -141,7 +141,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(557, 19);
+            label3.Location = new Point(545, 16);
             label3.Name = "label3";
             label3.Size = new Size(85, 20);
             label3.TabIndex = 32;
