@@ -30,6 +30,7 @@ namespace UTS_Pest_Control.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentForm));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -45,7 +46,9 @@ namespace UTS_Pest_Control.Forms
             dtpServiceDate = new DateTimePicker();
             label5 = new Label();
             dgvPayments = new DataGridView();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvPayments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -200,12 +203,23 @@ namespace UTS_Pest_Control.Forms
             dgvPayments.TabIndex = 48;
             dgvPayments.CellClick += dgvPayments_CellClick;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(922, 47);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(193, 173);
+            pictureBox1.TabIndex = 51;
+            pictureBox1.TabStop = false;
+            // 
             // PaymentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(1115, 617);
+            Controls.Add(pictureBox1);
             Controls.Add(label5);
             Controls.Add(dtpServiceDate);
             Controls.Add(dgvPayments);
@@ -225,6 +239,7 @@ namespace UTS_Pest_Control.Forms
             Text = "PaymentForm";
             Load += PaymentForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPayments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -297,5 +312,6 @@ namespace UTS_Pest_Control.Forms
         private DateTimePicker dtpServiceDate;
         private Label label5;
         private DataGridView dgvPayments;
+        private PictureBox pictureBox1;
     }
 }

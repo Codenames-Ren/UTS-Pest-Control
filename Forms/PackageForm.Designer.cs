@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageForm));
             dgvPackages = new DataGridView();
             btnClear = new Button();
             btnDelete = new Button();
@@ -42,7 +43,9 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvPackages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgvPackages
@@ -181,12 +184,23 @@
             label1.TabIndex = 30;
             label1.Text = "Client ID";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(1, 98);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(149, 140);
+            pictureBox1.TabIndex = 45;
+            pictureBox1.TabStop = false;
+            // 
             // PackageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(969, 641);
+            Controls.Add(pictureBox1);
             Controls.Add(dgvPackages);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
@@ -204,6 +218,7 @@
             Name = "PackageForm";
             Text = "PackageForm";
             ((System.ComponentModel.ISupportInitialize)dgvPackages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -227,5 +242,6 @@
         private Label label2;
         private Label label1;
         private Label label6;
+        private PictureBox pictureBox1;
     }
 }

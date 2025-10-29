@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
             dgvClients = new DataGridView();
             btnClear = new Button();
             btnDelete = new Button();
@@ -42,7 +43,9 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgvClients
@@ -181,12 +184,23 @@
             label2.TabIndex = 16;
             label2.Text = "Name";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(1, 109);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(143, 144);
+            pictureBox1.TabIndex = 30;
+            pictureBox1.TabStop = false;
+            // 
             // ClientForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.RoyalBlue;
             ClientSize = new Size(1000, 661);
+            Controls.Add(pictureBox1);
             Controls.Add(dgvClients);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
@@ -204,6 +218,7 @@
             Name = "ClientForm";
             Text = "ClientForm";
             ((System.ComponentModel.ISupportInitialize)dgvClients).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,5 +239,6 @@
         private Label label4;
         private Label label3;
         private Label label2;
+        private PictureBox pictureBox1;
     }
 }
