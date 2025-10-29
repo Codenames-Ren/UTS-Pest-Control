@@ -264,11 +264,17 @@ namespace UTS_Pest_Control.Forms
 
         private void LoadPackages()
         {
+            cmbPackage.SelectedIndexChanged -= cmbPackage_SelectedIndexChanged;
+
             var packages = _packageService.GetAllPackages();
             cmbPackage.DataSource = packages;
-            cmbPackage.DisplayMember = "Name";       
-            cmbPackage.ValueMember = "PackageID";    
+            cmbPackage.DisplayMember = "Name";
+            cmbPackage.ValueMember = "PackageID";
+
             cmbPackage.SelectedIndex = -1;
+            txtTotal.Clear();
+
+            cmbPackage.SelectedIndexChanged += cmbPackage_SelectedIndexChanged;
         }
 
         private void LoadPayments()

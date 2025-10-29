@@ -17,6 +17,8 @@ namespace UTS_Pest_Control.Forms
         private readonly PaymentService _paymentService;
         private readonly ClientService _clientService;
         private readonly PackageService _packageService;
+
+        private bool isLoading = true;
         public PaymentForm(PaymentService paymentService, ClientService clientService, PackageService packageService)
         {
             InitializeComponent();
@@ -24,9 +26,20 @@ namespace UTS_Pest_Control.Forms
             _clientService = clientService;
             _packageService = packageService;
 
+            isLoading = true;
+
             LoadClients();
             LoadPayments();
             LoadPackages();
+
+            txtTotal.Clear();
+            cmbPackage.SelectedIndex = -1;
+            cmbClient.SelectedIndex = -1;
+            cmbMethod.SelectedIndex = -1;
+
+            dtpServiceDate.MinDate = DateTime.Now;
+
+            isLoading = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -142,16 +155,16 @@ namespace UTS_Pest_Control.Forms
 
         private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbPackage.SelectedValue == null || cmbPackage.SelectedValue is not int)
+            if (isLoading || cmbPackage.SelectedValue == null || cmbPackage.SelectedValue is not int)
                 return;
 
             int selectedPackageId = (int)cmbPackage.SelectedValue;
             var package = _packageService.GetPackageById(selectedPackageId);
 
             if (package != null)
-            {
                 txtTotal.Text = package.Price.ToString("N0"); // otomatis isi harga paket
-            }
+            else
+                txtTotal.Clear();
         }
 
         private void dgvPayments_CellClick(object sender, DataGridViewCellEventArgs e)
