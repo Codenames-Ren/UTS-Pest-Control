@@ -48,146 +48,145 @@
             // dgvPackages
             // 
             dgvPackages.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPackages.Location = new Point(25, 298);
-            dgvPackages.Margin = new Padding(4);
+            dgvPackages.Location = new Point(28, 238);
             dgvPackages.Name = "dgvPackages";
             dgvPackages.RowHeadersWidth = 51;
-            dgvPackages.Size = new Size(1152, 475);
+            dgvPackages.Size = new Size(914, 380);
             dgvPackages.TabIndex = 44;
+            dgvPackages.CellClick += dgvPackages_CellClick_1;
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(611, 220);
-            btnClear.Margin = new Padding(4);
+            btnClear.BackColor = Color.Goldenrod;
+            btnClear.ForeColor = SystemColors.ButtonHighlight;
+            btnClear.Location = new Point(579, 180);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(118, 49);
+            btnClear.Size = new Size(94, 39);
             btnClear.TabIndex = 43;
             btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(449, 220);
-            btnDelete.Margin = new Padding(4);
+            btnDelete.BackColor = Color.Red;
+            btnDelete.ForeColor = SystemColors.ButtonHighlight;
+            btnDelete.Location = new Point(449, 180);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(118, 49);
+            btnDelete.Size = new Size(94, 39);
             btnDelete.TabIndex = 42;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(262, 220);
-            btnUpdate.Margin = new Padding(4);
+            btnUpdate.BackColor = Color.Orange;
+            btnUpdate.ForeColor = SystemColors.ButtonHighlight;
+            btnUpdate.Location = new Point(300, 180);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(118, 49);
+            btnUpdate.Size = new Size(94, 39);
             btnUpdate.TabIndex = 41;
             btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(80, 220);
-            btnAdd.Margin = new Padding(4);
+            btnAdd.BackColor = Color.Lime;
+            btnAdd.ForeColor = SystemColors.ButtonHighlight;
+            btnAdd.Location = new Point(154, 180);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(118, 49);
+            btnAdd.Size = new Size(94, 39);
             btnAdd.TabIndex = 40;
             btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // txtPrice
             // 
-            txtPrice.Location = new Point(170, 86);
-            txtPrice.Margin = new Padding(4);
+            txtPrice.Location = new Point(136, 69);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(329, 31);
+            txtPrice.Size = new Size(264, 27);
             txtPrice.TabIndex = 38;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(810, 20);
-            txtDescription.Margin = new Padding(4);
+            txtDescription.Location = new Point(648, 16);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(366, 170);
+            txtDescription.Size = new Size(294, 137);
             txtDescription.TabIndex = 37;
             // 
             // txtName
             // 
-            txtName.Location = new Point(175, 24);
-            txtName.Margin = new Padding(4);
+            txtName.Location = new Point(140, 19);
             txtName.Name = "txtName";
-            txtName.Size = new Size(324, 31);
+            txtName.Size = new Size(260, 27);
             txtName.TabIndex = 36;
             // 
             // txtClientID
             // 
-            txtClientID.Location = new Point(12, -105);
-            txtClientID.Margin = new Padding(4);
+            txtClientID.Location = new Point(10, -84);
             txtClientID.Name = "txtClientID";
             txtClientID.ReadOnly = true;
-            txtClientID.Size = new Size(324, 31);
+            txtClientID.Size = new Size(260, 27);
             txtClientID.TabIndex = 35;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(596, -96);
-            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Location = new Point(477, -77);
             label5.Name = "label5";
-            label5.Size = new Size(54, 25);
+            label5.Size = new Size(46, 20);
             label5.TabIndex = 34;
             label5.Text = "Email";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(80, 86);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.ForeColor = SystemColors.ButtonHighlight;
+            label4.Location = new Point(64, 69);
             label4.Name = "label4";
-            label4.Size = new Size(49, 25);
+            label4.Size = new Size(41, 20);
             label4.TabIndex = 33;
             label4.Text = "Price";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(681, 20);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.ForeColor = SystemColors.ButtonHighlight;
+            label3.Location = new Point(545, 16);
             label3.Name = "label3";
-            label3.Size = new Size(102, 25);
+            label3.Size = new Size(85, 20);
             label3.TabIndex = 32;
             label3.Text = "Description";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(15, 24);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(12, 19);
             label2.Name = "label2";
-            label2.Size = new Size(128, 25);
+            label2.Size = new Size(107, 20);
             label2.TabIndex = 31;
             label2.Text = "Package Name";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(-85, -101);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(-68, -81);
             label1.Name = "label1";
-            label1.Size = new Size(79, 25);
+            label1.Size = new Size(66, 20);
             label1.TabIndex = 30;
             label1.Text = "Client ID";
             // 
             // PackageForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1211, 801);
+            BackColor = Color.RoyalBlue;
+            ClientSize = new Size(969, 641);
             Controls.Add(dgvPackages);
             Controls.Add(btnClear);
             Controls.Add(btnDelete);
@@ -202,7 +201,6 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(4);
             Name = "PackageForm";
             Text = "PackageForm";
             ((System.ComponentModel.ISupportInitialize)dgvPackages).EndInit();

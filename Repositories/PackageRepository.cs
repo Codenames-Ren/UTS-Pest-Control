@@ -33,11 +33,19 @@ namespace UTS_Pest_Control.Repositories
             _context.SaveChanges();
         }
 
-        public void Update(Package package) 
+        public void Update(Package package)
         {
-            _context.Packages.Update(package);
-            _context.SaveChanges();
+            var existingPackage = _context.Packages.Find(package.PackageID);
+            if (existingPackage != null)
+            {
+                existingPackage.Name = package.Name;
+                existingPackage.Description = package.Description;
+                existingPackage.Price = package.Price;
+
+                _context.SaveChanges();
+            }
         }
+
         public void Delete(int id) 
         {
             var package = _context.Packages.Find(id);

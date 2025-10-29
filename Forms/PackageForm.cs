@@ -19,6 +19,8 @@ namespace UTS_Pest_Control.Forms
         {
             InitializeComponent();
             _packageService = packageService;
+
+            LoadPackages();
         }
 
         private void PackageForm_Load(object sender, EventArgs e)
@@ -72,10 +74,17 @@ namespace UTS_Pest_Control.Forms
                 Price = price
             };
 
-            _packageService.AddPackage(package);
-            MessageBox.Show("Paket berhasil ditambahkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadPackages();
-            ClearInputs();
+            try
+            {
+                _packageService.AddPackage(package);
+                MessageBox.Show("Paket berhasil ditambahkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadPackages();
+                ClearInputs();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -86,7 +95,7 @@ namespace UTS_Pest_Control.Forms
                 return;
             }
 
-            var selectedld = (int)dgvPackages.SelectedRows[0].Cells["PackageID"].Value;
+            var selectedId = (int)dgvPackages.SelectedRows[0].Cells["PackageID"].Value;
 
             string name = txtName.Text.Trim();
             string desc = txtDescription.Text.Trim();
@@ -106,16 +115,23 @@ namespace UTS_Pest_Control.Forms
 
             var package = new Package
             {
-                PackageID = selectedld,
+                PackageID = selectedId,
                 Name = name,
                 Description = desc,
                 Price = price
             };
 
-            _packageService.UpdatePackage(package);
-            MessageBox.Show("Paket berhasil diupdate!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadPackages();
-            ClearInputs();
+            try
+            {
+                _packageService.UpdatePackage(package);
+                MessageBox.Show("Paket berhasil diupdate!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadPackages();
+                ClearInputs();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -144,12 +160,12 @@ namespace UTS_Pest_Control.Forms
             ClearInputs();
         }
 
-        private void dgvPackages_CellClick(object sender, DataGridViewCellEventArgs e) 
+        private void dgvPackages_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) 
-            { 
+            if (e.RowIndex >= 0)
+            {
                 var row = dgvPackages.Rows[e.RowIndex];
-                txtName.Text = row.Cells["PackageName"].Value?.ToString();
+                txtName.Text = row.Cells["Name"].Value?.ToString();
                 txtDescription.Text = row.Cells["Description"].Value?.ToString();
                 txtPrice.Text = row.Cells["price"].Value?.ToString();
             }

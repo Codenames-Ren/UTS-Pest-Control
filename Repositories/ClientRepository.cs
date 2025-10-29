@@ -32,11 +32,20 @@ namespace UTS_Pest_Control.Repositories
             _context.SaveChanges();
         }
 
-        public void Update(Client client) 
+        public void Update(Client client)
         {
-            _context.Clients.Update(client);
-            _context.SaveChanges();
+            var existingClient = _context.Clients.Find(client.ClientID);
+            if (existingClient != null)
+            {
+                existingClient.Name = client.Name;
+                existingClient.Address = client.Address;
+                existingClient.Phone = client.Phone;
+                existingClient.Email = client.Email;
+
+                _context.SaveChanges();
+            }
         }
+
 
         public void Delete(int id) 
         {

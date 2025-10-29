@@ -54,10 +54,17 @@ namespace UTS_Pest_Control.Forms
                 PaymentStatus = "Paid"
             };
 
-            _paymentService.AddPayment(payment);
-            MessageBox.Show("Pembayaran berhasil ditambahkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadPayments();
-            ClearInputs();
+            try
+            {
+                _paymentService.AddPayment(payment);
+                MessageBox.Show("Pembayaran berhasil ditambahkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadPayments();
+                ClearInputs();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -88,10 +95,17 @@ namespace UTS_Pest_Control.Forms
                 PaymentStatus = "Paid"
             };
 
-            _paymentService.UpdatePayment(payment);
-            MessageBox.Show("Transaksi berhasil diupdate!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadPayments();
-            ClearInputs();
+            try
+            {
+                _paymentService.UpdatePayment(payment);
+                MessageBox.Show("Transaksi berhasil diupdate!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadPayments();
+                ClearInputs();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -107,28 +121,23 @@ namespace UTS_Pest_Control.Forms
 
             if (confirm == DialogResult.Yes)
             {
-                _paymentService.DeletePayment(selectedId);
-                MessageBox.Show("Transaksi berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadPayments();
-                ClearInputs();
+                try
+                {
+                    _paymentService.DeletePayment(selectedId);
+                    MessageBox.Show("Transaksi berhasil dihapus!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadPayments();
+                    ClearInputs();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Kesalahan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInputs();
-        }
-
-        private void dgvPayments_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var row = dgvPayments.Rows[e.RowIndex];
-                cmbClient.Text = row.Cells["ClientName"].Value?.ToString();
-                cmbPackage.Text = row.Cells["PackageName"].Value?.ToString();
-                cmbMethod.Text = row.Cells["PaymentMethod"].Value?.ToString();
-                txtTotal.Text = row.Cells["TotalAmount"].Value?.ToString();
-            }
         }
 
         private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
@@ -142,6 +151,18 @@ namespace UTS_Pest_Control.Forms
             if (package != null)
             {
                 txtTotal.Text = package.Price.ToString("N0"); // otomatis isi harga paket
+            }
+        }
+
+        private void dgvPayments_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvPayments.Rows[e.RowIndex];
+                cmbClient.Text = row.Cells["ClientName"].Value?.ToString();
+                cmbPackage.Text = row.Cells["PackageName"].Value?.ToString();
+                cmbMethod.Text = row.Cells["PaymentMethod"].Value?.ToString();
+                txtTotal.Text = row.Cells["TotalAmount"].Value?.ToString();
             }
         }
     }

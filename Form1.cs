@@ -14,6 +14,8 @@ namespace UTS_Pest_Control
         private readonly ClientService _clientService;
         private readonly PackageService _packageService;
         private readonly PaymentService _paymentService;
+
+        private Panel panelContainer;
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +31,20 @@ namespace UTS_Pest_Control
             _packageService = new PackageService(_packageRepository);
             _paymentService = new PaymentService(_paymentRepository, _clientRepository, _packageRepository);
 
-            this.IsMdiContainer = true;
+            InitializePanelContainer();
+        }
+
+        private void InitializePanelContainer()
+        {
+            panelContainer = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.Transparent,
+                Visible = false
+            };
+
+            this.Controls.Add(panelContainer);
+            panelContainer.BringToFront();
         }
 
         private void clientToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,7 +62,7 @@ namespace UTS_Pest_Control
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var confirm = MessageBox.Show("Yakin ingin keluar dari aplikasi?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm == DialogResult.Yes) 
+            if (confirm == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -58,21 +73,22 @@ namespace UTS_Pest_Control
             this.Text = "UTS Pest Control Management System";
         }
 
-        private void OpenForm(Form form) 
+        private void OpenForm(Form form)
         {
-            foreach (Form child in this.MdiChildren) 
-            {
-                child.Close();
-            }
+            panelContainer.Visible = true;
+            panelContainer.Controls.Clear();
 
-            form.MdiParent = this;
-            form.WindowState = FormWindowState.Maximized;
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+
+            panelContainer.Controls.Add(form);
             form.Show();
         }
 
-        private void LoadPackages()
+        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var packages = _packageService.GetAllPackages();
+            panelContainer.Visible = false;
         }
     }
 }

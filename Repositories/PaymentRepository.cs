@@ -31,10 +31,21 @@ namespace UTS_Pest_Control.Repositories
             _context.Payments.Add(payment);
             _context.SaveChanges();
         }
-        public void Update(Payment payment) 
+        public void Update(Payment payment)
         {
-            _context.Payments.Update(payment);
-            _context.SaveChanges();
+            var existingPayment = _context.Payments.Find(payment.PaymentID);
+            if (existingPayment != null)
+            {
+                existingPayment.ClientID = payment.ClientID;
+                existingPayment.PackageID = payment.PackageID;
+                existingPayment.PaymentMethod = payment.PaymentMethod;
+                existingPayment.TotalAmount = payment.TotalAmount;
+                existingPayment.PaymentDate = payment.PaymentDate;
+                existingPayment.ServiceDate = payment.ServiceDate;
+                existingPayment.PaymentStatus = payment.PaymentStatus;
+
+                _context.SaveChanges();
+            }
         }
 
         public void Delete(int id) 

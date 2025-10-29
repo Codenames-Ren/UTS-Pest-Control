@@ -19,6 +19,8 @@ namespace UTS_Pest_Control.Forms
         {
             InitializeComponent();
             _clientService = clientservice;
+
+            LoadClients();
         }
 
         private void ClientForm_Load(object sender, EventArgs e)
@@ -62,6 +64,36 @@ namespace UTS_Pest_Control.Forms
                 return;
             }
 
+            // Validasi format email dengan regex(Regular Expression)
+            if (!System.Text.RegularExpressions.Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Format email tidak valid!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validasi nomor telepon
+            if (!phone.All(char.IsDigit))
+            {
+                MessageBox.Show("Nomor telepon hanya boleh berisi angka!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (phone.Length < 10)
+            {
+                MessageBox.Show("Nomor telepon terlalu pendek!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Cegah duplikasi email
+            var existingClient = _clientService.GetAllClients()
+                .FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+
+            if (existingClient != null)
+            {
+                MessageBox.Show("Client dengan email ini sudah terdaftar!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var client = new Client
             {
                 Name = name,
@@ -84,25 +116,55 @@ namespace UTS_Pest_Control.Forms
                 return;
             }
 
-            var selectedId = dgvClients.SelectedRows[0].Cells["ClientId"].Value;
+            var selectedId = (int)dgvClients.SelectedRows[0].Cells["ClientId"].Value;
 
-            var client = new Client
-            {
-                ClientID = (int)selectedId,
-                Name = txtClientName.Text.Trim(),
-                Address = txtClientAddress.Text.Trim(),
-                Phone = txtClientPhone.Text.Trim(),
-                Email = txtClientEmail.Text.Trim(),
-            };
+            string name = txtClientName.Text.Trim();
+            string address = txtClientAddress.Text.Trim();
+            string phone = txtClientPhone.Text.Trim();
+            string email = txtClientEmail.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(client.Name) ||
-                string.IsNullOrWhiteSpace(client.Address) ||
-                string.IsNullOrWhiteSpace(client.Phone) ||
-                string.IsNullOrWhiteSpace(client.Email))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(address) ||
+                string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(email))
             {
                 MessageBox.Show("Semua field harus diisi!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Format email tidak valid!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!phone.All(char.IsDigit))
+            {
+                MessageBox.Show("Nomor telepon hanya boleh berisi angka!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (phone.Length < 10)
+            {
+                MessageBox.Show("Nomor telepon terlalu pendek!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var existingClient = _clientService.GetAllClients()
+                .FirstOrDefault(c => c.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && c.ClientID != selectedId);
+
+            if (existingClient != null)
+            {
+                MessageBox.Show("Email ini sudah digunakan oleh client lain!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var client = new Client
+            {
+                ClientID = selectedId,
+                Name = name,
+                Address = address,
+                Phone = phone,
+                Email = email,
+            };
 
             _clientService.UpdateClient(client);
             MessageBox.Show("Client berhasil diupdate!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -137,9 +199,9 @@ namespace UTS_Pest_Control.Forms
             ClearInputs();
         }
 
-        private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvClients_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 var row = dgvClients.Rows[e.RowIndex];
                 txtClientName.Text = row.Cells["Name"].Value?.ToString();
